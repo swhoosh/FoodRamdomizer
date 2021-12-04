@@ -1,0 +1,7 @@
+{
+  "name": "FoodRandomizer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
