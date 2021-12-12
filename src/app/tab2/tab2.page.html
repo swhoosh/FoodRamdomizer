@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      GETMEFOOD
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,45 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">GETMEFOOD</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-card>
+  <ion-item>
+    <ion-card-title>Random Food</ion-card-title><br>
+  </ion-item>
+
+  <ion-card *ngFor = "let item of random_items" >
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+        <h1>{{item.name}}</h1>
+        <ion-label class="ion-text-wrap" color="medium">
+          Type      : {{item.category}}<br>
+          Price     : {{item.price}}<br>
+          Calories  : {{item.calories}}<br>
+          Delivery  : {{item.delivery}}<br>
+        </ion-label>
+      </ion-label>
+      <ion-note slot="end">
+        # {{item.pick}}
+        <ion-button (click)="doPickFood(item)" expand="block" fill="outline" color={{pickColor}} disabled={{isDisabled}}>{{pickText}}</ion-button>
+      </ion-note>
+    </ion-item>
+  </ion-card>
+
+  <ion-item>
+    <ion-label>Type</ion-label>
+    <ion-select [(ngModel)]="category" interface="popover" placeholder="Select One">
+      <ion-select-option *ngFor="let type of type_list" [value]="type">{{type}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-card-content>
+    <ion-button (click)="doRandomize()" size="large" strong=true expand="full" color={{randomColor}}>
+      <ion-icon name="dice-outline"></ion-icon>
+      Random
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+
 </ion-content>

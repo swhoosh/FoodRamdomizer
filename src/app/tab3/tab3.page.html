@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      GETMEFOOD
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,28 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">GETMEFOOD</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card>
+    <ion-item><ion-card-title>Number of Each Food Type</ion-card-title></ion-item>
+    <ion-card-content>
+      <canvas #doughnutCanvas style="position: relative;"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item><ion-card-title>Top Pick Chart</ion-card-title></ion-item>
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select [(ngModel)]="category" (ionChange)="categoryUpdated()" interface="popover" placeholder="Select One">
+        <ion-select-option *ngFor="let type of type_list" [value]="type">{{type}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card-content>
+      <canvas #barCanvas style="position: relative;"></canvas>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

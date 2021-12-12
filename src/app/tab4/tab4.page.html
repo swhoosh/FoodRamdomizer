@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      GETMEFOOD
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">GETMEFOOD</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-item>
+      <ion-card-title>List of all food</ion-card-title><br>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select [(ngModel)]="category" (ionChange)="categoryUpdated()" interface="action-sheet" placeholder="Select One">
+        <ion-select-option *ngFor="let type of type_list" [value]="type">{{type}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card *ngFor = "let item of item_list" >
+      <ion-item-sliding>
+        <ion-item>
+          <ion-label> 
+          <h2>{{item.name}}</h2> 
+          <p>Type      : {{item.category}}</p>
+          <p>Price     : {{item.price}}</p>
+          <p>Calories  : {{item.calories}}</p>
+          <p>Delivery  : {{item.delivery}}</p>
+        </ion-label>
+        <ion-note slot="end">
+          # {{item.pick}}
+        </ion-note>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option type="button" (click)="doDeleteItem(item)" color="danger">
+            <ion-icon slot="icon-only" name="close"></ion-icon>  
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item-options side="start">
+          <ion-item-option type="button" color="primary">
+            <ion-icon slot="icon-only" name="expand"></ion-icon>  
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadList($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </ion-card>
+
+</ion-content>
